@@ -1,0 +1,65 @@
+td {
+    border: 1px solid black;
+}
+
+table {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.green {
+    display: inline-block;
+    background-color: green;
+    height: 100px;
+    width: 100px;
+}
+
+.red {
+    display: inline-block;
+    background-color: red;
+    height: 100px;
+    width: 100px;
+}
+
+.blue {
+    display: inline-block;
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+}
+
+.hoverRed {
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+}
+
+.hoverGreen {
+    width: 200px;
+    height: 200px;
+    border: 1px solid green;
+}
+
+.hoverBlue {
+    width: 200px;
+    height: 200px;
+    border: 1px solid blue;
+}
+
+#name-list {
+    max-width: 100px;
+}
+#name-list li{
+    background-color: yellow;
+}
+
+#name-list li:nth-of-type(odd){
+    background-color: yellowgreen;
+}
+
+
+
+
+
+
+
