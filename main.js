@@ -15,7 +15,7 @@
         });
 
         function displayCountryInfo(country_code) {
-            var url_country = 'https://restcountries.eu/rest/v1/alpha/';
+            var url_country = 'http://localhost:8084/Javascript_Exercise_5_WebProxy/countryprox?countrycode=';
             var borders = "";
             url_country += country_code;
             $.ajax({
@@ -34,7 +34,7 @@
                     );
                 },
                 error: function (res) {
-                    alert('Error');
+                    console.log(res);
                 }
             });
         }
