@@ -8,11 +8,11 @@ package rest;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import entity.Quote;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import static java.util.regex.Pattern.quote;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -23,10 +23,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import org.glassfish.jersey.message.internal.TracingInfo.Message;
 
 /**
  * REST Web Service
@@ -90,8 +90,9 @@ public class QuoteResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateQuote(
             @PathParam("id") int id,
-            JsonObject quote) {
-        quotes.put(id, quote.getAsString());
+            Message message) {
+        System.out.println(message.quote);
+        quotes.put(id, message.quote);
         return Response.status(Status.OK).entity(gson.toJson(new Quote(id, quotes.get(id)))).build();
     }
 }
