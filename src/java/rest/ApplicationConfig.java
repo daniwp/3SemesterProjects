@@ -4,7 +4,6 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**
- *
  * @author danie
  */
 @javax.ws.rs.ApplicationPath("api")
@@ -26,5 +25,5 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(rest.QuoteResource.class);
     }
-    
+
 }

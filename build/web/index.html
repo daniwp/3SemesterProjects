@@ -5,12 +5,115 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div>TODO write content</div>
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </body>
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                Get quote
+                            </div>
+                            <div class="panel-body">
+                                <pre><code id="quote"></code></pre>
+                        <div class="form-group">
+                            <button id="quote-get" class="btn btn-primary btn-block">Get Quote</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        Add quote
+                    </div>
+                    <div class="panel-body">
+                        <form method="POST" action="api/quote/add">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="quote" placeholder="Enter your quote..." required>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success btn-block" type="submit">Add Quote</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        Update quote
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input type="number" id="quote-id" placeholder="ID..." class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="quote-newq" placeholder="Enter quote text..." class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button id="quote-update" class="btn btn-warning btn-block">Update quote</button>
+                        </div>
+                        <div class="alert" id="update-response">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        Delete a quote
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="quote-id-delete" required>
+                        </div>
+                        <div class="form-group">
+                            <button id="quote-delete" class="btn btn-danger btn-block">Delete</button>
+                        </div>
+                        <div class="alert" id="update-response-delete">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/main.js" type="text/javascript"></script>
+
+</body>
 </html>

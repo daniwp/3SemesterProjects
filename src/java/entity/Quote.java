@@ -1,11 +1,15 @@
 package entity;
 
 public class Quote {
-    
+
     private int id;
     private String quote;
 
     public Quote() {
+    }
+
+    public Quote(String quote) {
+        this.quote = quote;
     }
 
     public Quote(int id, String quote) {
@@ -18,6 +22,7 @@ public class Quote {
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
@@ -28,7 +33,6 @@ public class Quote {
     public void setQuote(String quote) {
         this.quote = quote;
     }
-    
-    
-    
+
+
 }
