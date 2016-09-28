@@ -9,11 +9,12 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.Quote;
+import exception.QuoteNotFoundExceptionMapper;
+import exception.QuoteException;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import static java.util.regex.Pattern.quote;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.core.Context;
@@ -28,7 +29,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import org.glassfish.jersey.message.internal.TracingInfo.Message;
 
 /**
  * REST Web Service
@@ -60,19 +60,31 @@ public class QuoteResource {
     /**
      * Retrieves representation of an instance of rest.QuoteResource
      *
+     * @param id
      * @return an instance of java.lang.String
+     * @throws exception.QuoteException
      */
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response get(@PathParam("id") int id) {
-        return Response.status(Status.OK).entity(gson.toJson(quotes.get(id))).build();
+    public Response get(@PathParam("id") int id) throws QuoteException {
+        String q = quotes.get(id);
+        
+        if (q == null) {
+            throw new QuoteException(404, "Quote with requested id not found");
+        }
+        
+        return Response.status(Status.OK).entity(gson.toJson(q)).build();
     }
 
     @GET
     @Path("/random")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getRandom() {
+    public Response getRandom() throws QuoteException {
+        if (quotes.isEmpty()) {
+            throw new QuoteException(404, "No Quotes Created yet");
+        }
+        
         int key = new Random().nextInt(quotes.size()) + 1;
         return Response.status(Status.OK).entity(gson.toJson(new Quote(key, quotes.get(key)))).build();
     }
@@ -89,27 +101,22 @@ public class QuoteResource {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-<<<<<<< HEAD
-    public Response updateQuote(
-            @PathParam("id") int id,
-            Message message) {
-        System.out.println(message.quote);
-        quotes.put(id, message.quote);
-=======
-    public Response update(@PathParam("id") int id, String quote) {
-        String qq = quote;
+    public Response update(@PathParam("id") int id, String quote) throws QuoteException {
+        if (quotes.get(id) == null) {
+            throw new QuoteException(404, "Quote with requested id not found");
+        }
+        
         String q = gson.fromJson(quote, Quote.class).getQuote();
         quotes.put(id, q);
->>>>>>> 541623f4c20e48a66fd13169367504853d6d4a81
         return Response.status(Status.OK).entity(gson.toJson(new Quote(id, quotes.get(id)))).build();
     }
 
     @DELETE
     @Path("/{id}")
-    public Response delete(@PathParam("id") int id) {
+    public Response delete(@PathParam("id") int id) throws QuoteException {
         Quote quote = new Quote(id, quotes.get(id));
-        if (quotes.get(id).isEmpty()) {
-            return Response.status(Status.NOT_FOUND).build();
+        if (quotes.get(id) == null) {
+            throw new QuoteException(404, "Quote with requested id not found");
         }
         quotes.remove(id);
         return Response.status(Status.OK).entity(gson.toJson(quote)).build();

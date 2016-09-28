@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
 
 
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                Get quote
-                            </div>
-                            <div class="panel-body">
-                                <pre><code id="quote"></code></pre>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Get quote
+                    </div>
+                    <div class="panel-body">
+                        <pre><code id="quote"></code></pre>
                         <div class="form-group">
                             <button id="quote-get" class="btn btn-primary btn-block">Get Quote</button>
+                        </div>
+                        <div class="alert" id="get-response">
                         </div>
                     </div>
                 </div>
@@ -43,10 +45,13 @@
                     <div class="panel-body">
                         <form method="POST" action="api/quote/add">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="quote" placeholder="Enter your quote..." required>
+                                <input type="text" class="form-control" name="quote" placeholder="Enter your quote..."
+                                       required>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-success btn-block" type="submit">Add Quote</button>
+                                <button id="btn-add" class="btn btn-success btn-block" type="submit">Add Quote</button>
+                            </div>
+                            <div class="alert" id="add-response">
                             </div>
                         </form>
                     </div>
@@ -102,7 +107,7 @@
                         <div class="form-group">
                             <button id="quote-delete" class="btn btn-danger btn-block">Delete</button>
                         </div>
-                        <div class="alert" id="update-response-delete">
+                        <div class="alert" id="delete-response">
                         </div>
                     </div>
                 </div>

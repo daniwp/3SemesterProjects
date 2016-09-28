@@ -19,3 +19,11 @@ body {
 #update-response {
     display: none;
 }
+
+#delete-response {
+    display: none;
+}
+
+#get-response {
+    display: none;
+}

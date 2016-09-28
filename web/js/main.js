@@ -2,6 +2,11 @@
     $(document).ready(function () {
 
         function randomQuote() {
+            $('#get-response')
+                    .css('display', 'none')
+                    .removeClass('alert-danger')
+                    .removeClass('alert-success');
+
             $.ajax({
                 url: 'http://localhost:8084/RESTExerciseDay1/api/quote/random',
                 type: 'GET',
@@ -10,7 +15,11 @@
                     $('#quote').html(res.quote);
                 },
                 error: function (res) {
-                    alert('Error');
+                    var json = $.parseJSON(res.responseText);
+                    $('#add-response')
+                            .html('Error code: ' + json.code + '<br>' + 'Message: "' + json.message + '"')
+                            .toggleClass('alert-danger')
+                            .fadeIn(400);
                 }
             });
         }
@@ -26,9 +35,9 @@
             var q = $('#quote-newq').val();
 
             $('#update-response')
-                .css('display', 'none')
-                .removeClass('alert-danger')
-                .removeClass('alert-success');
+                    .css('display', 'none')
+                    .removeClass('alert-danger')
+                    .removeClass('alert-success');
 
             $.ajax({
                 url: 'http://localhost:8084/RESTExerciseDay1/api/quote/' + id,
@@ -37,15 +46,16 @@
                 data: JSON.stringify({quote: q}),
                 success: function (res) {
                     $('#update-response')
-                        .html("Quote successfully added")
-                        .toggleClass("alert-success")
-                        .fadeIn(400);
+                            .html("Quote successfully updated")
+                            .toggleClass("alert-success")
+                            .fadeIn(400);
                 },
                 error: function (res) {
+                    var json = $.parseJSON(res.responseText);
                     $('#update-response')
-                        .html("An error occurred")
-                        .toggleClass('alert-danger')
-                        .fadeIn(400);
+                            .html('Error code: ' + json.code + '<br>' + 'Message: "' + json.message + '"')
+                            .toggleClass('alert-danger')
+                            .fadeIn(400);
                 }
             });
         });
@@ -53,25 +63,26 @@
         $('#quote-delete').on('click', function () {
             var id = $('#quote-id-delete').val();
 
-            $('#update-response-delete')
-                .css('display', 'none')
-                .removeClass('alert-danger')
-                .removeClass('alert-success');
+            $('#delete-response')
+                    .css('display', 'none')
+                    .removeClass('alert-danger')
+                    .removeClass('alert-success');
 
             $.ajax({
                 url: 'http://localhost:8084/RESTExerciseDay1/api/quote/' + id,
                 type: 'DELETE',
                 success: function (res) {
-                    $('#update-response-delete')
-                        .html("Quote successfully deleted")
-                        .toggleClass("alert-success")
-                        .fadeIn(400);
+                    $('#delete-response')
+                            .html("Quote successfully deleted")
+                            .toggleClass("alert-success")
+                            .fadeIn(400);
                 },
                 error: function (res) {
-                    $('#update-response-delete')
-                        .html("An error occurred")
-                        .toggleClass('alert-danger')
-                        .fadeIn(400);
+                    var json = $.parseJSON(res.responseText);
+                    $('#delete-response')
+                            .html('Error code: ' + json.code + '<br>' + 'Message: "' + json.message + '"')
+                            .toggleClass('alert-danger')
+                            .fadeIn(400);
                 }
             });
         });
