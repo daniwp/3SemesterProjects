@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="DemoApp" ng-controller="CarController as ctrl">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{ctr.title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="page-header">
+                    <h1>{{ctrl.title}}</h1>
+                </div>
+                <!-- Add your Content here -->
+                <div style="border: none" class="page-header">
+                    <h2>Number of cars: {{ctrl.cars.length}}</h2>
+                </div>
+                <input type="search">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Year</th>
+                        <th>Registered</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="car in ctrl.cars">
+                        <td>{{$index + 1}}</td>
+                        <td>{{car.year}}</td>
+                        <td>{{car.registered | date}}</td>
+                        <td>{{car.make}}</td>
+                        <td>{{car.model}}</td>
+                        <td>{{car.description}}</td>
+                        <td>{{car.price | currency}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="angular-locale_da.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    var myApp = angular.module('DemoApp', []);
+    myApp.controller('CarController', [function () {
+
+        var self = this;
+        self.cars = [
+            {
+                year: 1997,
+                registered: 867621600000,
+                make: 'Ford',
+                model: 'E350',
+                description: 'ac, abs, moon',
+                price: 3000
+            }
+            , {year: 1999, registered: 945212400000, make: 'Chevy', model: 'Venture', description: 'None', price: 4900}
+            , {year: 2000, registered: 953766000000, make: 'Chevy', model: 'Venture', description: '', price: 5000}
+            , {
+                year: 1996,
+                registered: 844380000000,
+                make: 'Jeep',
+                model: 'Grand Cherokee',
+                description: 'Air, moon roof, loaded',
+                price: 4799
+            }
+        ];
+        self.title = "Cars Demo App";
+        self.predicate = 'make';
+    }]);
+</script>
+</body>
+</html>
