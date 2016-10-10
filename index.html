@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{{ctr.title}}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -19,28 +20,83 @@
                 <div style="border: none" class="page-header">
                     <h2>Number of cars: {{ctrl.cars.length}}</h2>
                 </div>
-                <input type="search">
+
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control" placeholder="Search da Tabble" ng-model="searchCar">
+                        </div>
+                    </div>
+                </form>
+
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>Index</th>
-                        <th>Year</th>
-                        <th>Registered</th>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Description</th>
-                        <th>Price</th>
+                        <th>
+                            <a href="#">
+                                Index
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'year'; sortReverse = !sortReverse">
+                                <span ng-show="sortType == 'year'" class="fa fa-caret-down"></span>
+                                Year
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'registered'; sortReverse = !sortReverse">
+                                <span ng-show="sortType == 'registered'" class="fa fa-caret-down"></span>
+                                Registered
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'make'; sortReverse = !sortReverse">
+                                <span ng-show="sortType == 'make'" class="fa fa-caret-down"></span>
+                                Make
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'model'; sortReverse = !sortReverse">
+                                <span ng-show="sortType == 'model'" class="fa fa-caret-down"></span>
+                                Model
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                                <span ng-show="sortType == 'description'" class="fa fa-caret-down"></span>
+                                Description
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'price'; sortReverse = !sortReverse">
+                                <span ng-show="sortType == 'price'" class="fa fa-caret-down"></span>
+                                Price
+                            </a>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="car in ctrl.cars">
+                    <tr ng-repeat="car in ctrl.cars | orderBy:sortType:sortReverse | filter:searchCar">
                         <td>{{$index + 1}}</td>
-                        <td>{{car.year}}</td>
-                        <td>{{car.registered | date}}</td>
-                        <td>{{car.make}}</td>
-                        <td>{{car.model}}</td>
-                        <td>{{car.description}}</td>
-                        <td>{{car.price | currency}}</td>
+                        <td>
+                            {{car.year}}
+                        </td>
+                        <td>
+                            {{car.registered | date}}
+                        </td>
+                        <td>
+                            {{car.make}}
+                        </td>
+                        <td>
+                            {{car.model}}
+                        </td>
+                        <td>
+                            {{car.description}}
+                        </td>
+                        <td>
+                            {{car.price | currency}}
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -56,8 +112,11 @@
 <script>
     var myApp = angular.module('DemoApp', []);
     myApp.controller('CarController', [function () {
-
         var self = this;
+
+        self.sortType = 'model';
+        self.sortReverse = false;
+
         self.cars = [
             {
                 year: 1997,
