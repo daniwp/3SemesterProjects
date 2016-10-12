@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app="DemoApp" ng-controller="CarController">
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>{{ctrl.title}}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-md-5">
+                <h1>{{ctrl.title}}</h1>
+                <h2>Number of cars: {{ctrl.cars.lenght}}</h2>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-search"></i>
+                        </span>
+                        <input ng-model="carfilter" type="text" class="form-control"
+                               placeholder="Search" id="inputGroup"/>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="col-md-9">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td><a href="" ng-click="predicate = 'year'; reverse = !reverse">Year</a></td>
+                                <td><a href="" ng-click="predicate = 'registered'; reverse = !reverse">Registered</a></td>
+                                <td><a href="" ng-click="predicate = 'make'; reverse = !reverse">Make</a></td>
+                                <td><a href="" ng-click="predicate = 'model'; reverse = !reverse">Model</a></td>
+                                <td><a href="" ng-click="predicate = 'description'; reverse = !reverse">Description</a></td>
+                                <td><a href="" ng-click="predicate = 'price'; reverse = !reverse">Price</a></td>
+                                <td><a>Action</a></td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="car in cars| filter: carfilter | orderBy:predicate:reverse">
+                                <td>{{car.id}}</td>
+                                <td>{{car.modelYear}}</td>
+                                <td>{{car.registered| date }}</td>
+                                <td>{{car.make}}</td>
+                                <td>{{car.model}}</td>
+                                <td>{{car.description}}</td>
+                                <td>{{car.price| currency}}</td>
+                                <td>
+                                    <a ng-click="setEditTrue(car.id)">edit</a> |
+                                    <a ng-click="removeCar(car.id)">delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h4>Sort Column: {{ctrl.predicate}}</h4>
+                    <h4>Reverse: {{ctrl.reverse}}</h4>
+                </div>
+
+                <div class="col-md-3" style="border: thin lightblue solid; border-radius: 5px;padding: 1em;">
+
+                    <p> Add your Form here</p>
+
+                    <form ng-hide="edit" class="form-horizontal" name="addForm" novalidate ng-submit="addForm.$valid && addCar()">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="year">Year:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" ng-model="newcar.modelYear" id="year" placeholder="Enter the year" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="registered">Reg.:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="newcar.registered" id="registered" placeholder="Enter registered date" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="make">Make:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="newcar.make" id="make" placeholder="Enter the maker" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="model">Model:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="newcar.model" id="model" placeholder="Enter the model" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="description">Descr.:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="newcar.description" id="description" placeholder="Enter the description" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="price">Price:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" ng-model="newcar.price" id="price" placeholder="Enter the price" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form ng-show="edit" class="form-horizontal" name="editForm" novalidate ng-submit="editForm.$valid && editCar()">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="year">Year:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" ng-model="newcar.modelYear" id="year" placeholder="Enter the year" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="registered">Reg.:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="newcar.registered" id="registered" placeholder="Enter registered date" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="make">Make:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="newcar.make" id="make" placeholder="Enter the maker" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="model">Model:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="newcar.model" id="model" placeholder="Enter the model" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="description">Descr.:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="newcar.description" id="description" placeholder="Enter the description" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="price">Price:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" ng-model="newcar.price" id="price" placeholder="Enter the price" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Edit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+        <script src="https://code.angularjs.org/1.4.7/i18n/angular-locale_da.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
