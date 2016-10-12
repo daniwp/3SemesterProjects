@@ -1,0 +1,68 @@
+<div class="page-header">
+    <h1>Quote of the day:</h1>
+    <h3>{{quote}}</h3>
+    <button ng-click="getRandom()" class="btn btn-primary">Get Random</button>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1>Get quote by id:</h1>
+        </div>
+        <form novalidate>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <input ng-model="getId" class="form-control" type="number" placeholder="Enter the id" required>
+                    </div>
+                </div>
+            </div>
+            <button ng-click="getById(getId)" class="btn btn-primary">Get</button>
+        </form>
+
+        <div class="page-header">
+            <h1>Add a quote:</h1>
+        </div>
+        <form novalidate>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <input ng-model="newQuote" class="form-control" type="text" placeholder="Enter the quote" required>
+                    </div>
+                </div>
+            </div>
+            <button ng-click="addQuote(newQuote)" class="btn btn-primary">Add</button>
+        </form>
+
+
+        <div class="page-header">
+            <h1>Delete a quote:</h1>
+        </div>
+        <form novalidate>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <input ng-model="deleteId" class="form-control" type="number" placeholder="Enter the id" required>
+                    </div>
+                </div>
+            </div>
+            <button ng-click="deleteQuote(deleteId)" class="btn btn-primary">Delete</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <div class="page-header">
+            <h1>Edit quote by id:</h1>
+        </div>
+        <form novalidate>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 col-sm-4">
+                        <input ng-model="editId" class="form-control" type="number" placeholder="Enter the id" required>
+                        <input ng-model="editQuote" class="form-control" type="text" placeholder="Enter the quote" required>
+                    </div>
+                </div>
+            </div>
+            <button ng-click="updateQuote(editId, editQuote)" class="btn btn-primary">Edit</button>
+        </form>
+    </div>
+</div>
