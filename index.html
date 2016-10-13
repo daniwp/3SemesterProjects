@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Recipes</title>
+
+    <!-- STYLESHEETS -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600,400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="dist/css/main.min.css">
+
+    <!-- DEPENDENCIES -->
+    <script src="dist/js/dependencies.min.js"></script>
+    <script src="dist/js/app.min.js"></script>
+
+
+</head>
+<body ng-controller="MainController">
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="navbarCollapsed = !navbarCollapsed">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Angular Starter</a>
+        </div>
+
+        <div class="collapse navbar-collapse" uib-collapse="navbarCollapsed">
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active">
+                    <a ui-sref="home">Home</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="add">Add</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="view-wrapper">
+                    <main ui-view></main>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
