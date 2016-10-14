@@ -1,0 +1,59 @@
+<div class="page-header">
+    <h1>Edit the car!</h1>
+</div>
+
+<div class="col-md-12" style="border: thin lightblue solid; border-radius: 5px;padding: 1em;">
+    <form class="form-horizontal" name="editForm" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="year">Year:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="newcar.modelYear" id="year" placeholder="Enter the year" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="registered">Reg.:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="newcar.registered | date" id="registered" placeholder="Enter registered date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="make">Make:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="newcar.make" id="make" placeholder="Enter the maker" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="model">Model:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="newcar.model" id="model" placeholder="Enter the model" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="description">Descr.:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="newcar.description" id="description" placeholder="Enter the description" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="price">Price:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-model="newcar.price" id="price" placeholder="Enter the price" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-4">
+                    <br>
+                    <button ng-disabled="editForm.$invalid" ng-click="editCar(newcar)" type="submit" class="btn btn-success btn-block">Edit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
