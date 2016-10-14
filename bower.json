@@ -1,0 +1,22 @@
+{
+  "name": "angular-controllers-routingexam",
+  "homepage": "https://github.com/daviddk222/ChatServer3Semester",
+  "authors": [
+    "HazemSaeid <hazem2670@live.dk>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1"
+  }
+}
