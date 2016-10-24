@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+
+<div class="section" ng-controller="RandomController">
+    <div class="container">
+        <div class="page-header">
+            <h1>Factories and Services!</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Random number</h4>
+                <p>{{randomNumber}}</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Random string</h4>
+                <p>{{randomString}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section" ng-controller="CountryController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h3>Countries!</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div style="margin-bottom: 20px" class="col-md-3">
+                <input type="text" ng-model="search" class="form-control" placeholder="Search" name="q">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <button ng-hide="showAll" ng-click="getCountries()" class="btn btn-primary btn-block">Show all countries</button>
+                <button ng-show="showAll" ng-click="setShowAll()" class="btn btn-primary btn-block">Hide</button>
+            </div>
+            <div class="col-md-4">
+                <button ng-hide="showAfrica" ng-click="getAfrica()" class="btn btn-primary btn-block">Show countries in Africa</button>
+                <button ng-show="showAfrica" ng-click="setShowAfrica()" class="btn btn-primary btn-block">Hide</button>
+            </div>
+            <div class="col-md-4">
+                <button ng-hide="showUK" ng-click="getUK()" class="btn btn-primary btn-block">Show United Kingdom</button>
+                <button ng-show="showUK" ng-click="setShowUK()" class="btn btn-primary btn-block">Hide</button>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <table style="margin-top: 20px" ng-show="showAll" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Capital</th>
+                        <th>Population</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="c in countries | filter:search">
+                        <td>{{c.name}}</td>
+                        <td>{{c.capital}}</td>
+                        <td>{{c.population}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-4">
+                <table style="margin-top: 20px" ng-show="showAfrica" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Capital</th>
+                        <th>Population</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="c in africa | filter:search">
+                        <td>{{c.name}}</td>
+                        <td>{{c.capital}}</td>
+                        <td>{{c.population}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-4">
+                <table style="margin-top: 20px" ng-show="showUK" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Capital</th>
+                        <th>Population</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="c in uk | filter:search">
+                        <td>{{c.name}}</td>
+                        <td>{{c.capital}}</td>
+                        <td>{{c.population}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
