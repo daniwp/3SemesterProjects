@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" ng-controller="MyController">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>Custom Filters!</h1>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="person in persons | youngster">
+                        <td>{{person.name}}</td>
+                        <td>{{person.gender}}</td>
+                        <td>{{person.age}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <style>
+                    table {
+                        border-collapse: collapse;
+                    }
+
+                    td {
+                        border: 1px solid black;
+                        height: 30px;
+                        width: 30px;
+                        font-size: 28px;
+                    }
+
+                    .dark {
+                        background: lightgray;
+                    }
+                </style>
+
+                <table ng-controller="ChessCtrl">
+                    <tr>
+                        <td ng-class="{'dark':$even}" ng-repeat="sq in board track by $index"><span ng-bind-html="sq | Chess"></span></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>
