@@ -12,7 +12,7 @@ app.controller('CaseController', ['$scope', 'CaseFactory', function ($scope, Cas
 
 app.filter('checkmark', function () {
     return function (input) {
-        return input.firstName + ", " + input.lastName;
+        return input.lastName + ", " + input.firstName;
     };
 });
 
