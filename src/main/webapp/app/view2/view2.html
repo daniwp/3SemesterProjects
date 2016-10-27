@@ -1,0 +1,10 @@
+<div class="page-header">
+    <h1>Clubs that kick balls</h1>
+</div>
+<ul class="list-group">
+    <div ng-repeat="club in footballclubs">
+        <li class="list-group-item"><span style="font-size: 16px">{{club.name}}</span> <a class="btn" href="{{ club.url}}">Go to their website</a></li>
+    </div>
+</ul>
+{{error}}
+

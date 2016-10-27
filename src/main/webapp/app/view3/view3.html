@@ -1,0 +1,20 @@
+<div class="page-header">
+    <h1>Super Users!</h1>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user.name}}</td>
+            <td>{{user.mail}}</td>
+        </tr>
+    </tbody>
+</table>
+
+{{error}}
